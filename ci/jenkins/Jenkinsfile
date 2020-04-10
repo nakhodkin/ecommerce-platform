@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Check environment') {
             steps {
-                sh 'alias ng="/usr/local/lib/node_modules/@angular/cli/bin/ng"'
+                sh 'sudo npm i @angular/cli -g'
                 sh 'node --version'
                 sh 'npm --version'
                 sh 'ng --version'
