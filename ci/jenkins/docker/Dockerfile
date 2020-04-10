@@ -4,4 +4,6 @@ RUN alias ng="/usr/local/lib/node_modules/@angular/cli/bin/ng"
 
 RUN npm install @angular/cli -g
 
+RUN which ng
+
 RUN ng --version
