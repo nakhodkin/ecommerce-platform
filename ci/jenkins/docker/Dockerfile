@@ -1,3 +1,3 @@
 FROM node:12-stretch
 
-RUN npm install @angular/cli
+RUN npm install @angular/cli -g
