@@ -18,7 +18,6 @@ pipeline {
             steps {
                 sh 'node --version'
                 sh 'npm --version'
-                sh 'ng --version'
                 sh "echo ${params.api} > 1.txt"
                 sh "cat 1.txt"
             }
