@@ -1,8 +1,8 @@
 pipeline {
     agent {
         dockerfile {
-            filename: 'Dockerfile'
-            dir: 'ci/jenkins/docker'
+            filename 'Dockerfile'
+            dir 'ci/jenkins/docker'
             args '-u 0:0'
             reuseNode true
         }
