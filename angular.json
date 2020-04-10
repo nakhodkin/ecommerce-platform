@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "ecommerce-platform": {
@@ -108,6 +108,11 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          },
+          "configurations": {
+            "ci": {
+              "format": "json"
+            }
           }
         },
         "e2e": {
@@ -123,6 +128,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ecommerce-platform"
+    }
+  },
+  "defaultProject": "ecommerce-platform",
+  "cli": {
+    "analytics": "a0984670-ba6c-4117-bdec-375880bd749a"
+  }
 }

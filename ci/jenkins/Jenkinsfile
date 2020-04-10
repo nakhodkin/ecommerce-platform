@@ -13,45 +13,43 @@ pipeline {
         NODE_ENV = "production"
     }
     stages {
-        stage('Test environenment') {
+        stage('Check environment') {
             steps {
-                sh 'pwd'
-                sh 'ls'
-                sh 'cat package.json'
                 sh 'node --version'
                 sh 'npm --version'
-                sh 'env'
                 sh "echo ${params.api} > 1.txt"
                 sh "cat 1.txt"
             }
         }
         stage('Install dependencies') {
             steps {
+                // check cloud storage
+                // check missing
                 sh 'npm install jest'
                 sh 'npm install'
-                sh 'ls node_modules'
             }
         }
         stage('Static checks') {
             parallel {
                  stage('Audit dependencies') {
                      steps {
+                        // check changed
                          sh 'npm audit'
                      }
                  }
                  stage('Code style checks') {
                      steps {
-                         sh 'echo eslint checks...'
+                         sh 'npm run lint-ci'
                      }
                  }
                  stage('Run unit tests') {
                      steps {
-                         sh 'npm run test:ci'
+                         sh 'npm run test-ci'
                      }
                      post {
                          always {
-                             junit 'junit.xml'
-                             cobertura coberturaReportFile: 'coverage/cobertura-coverage.xml', conditionalCoverageTargets: '20, 0, 0', lineCoverageTargets: '20, 0, 0', methodCoverageTargets: '20, 0, 0', fileCoverageTargets: '20, 0, 0', autoUpdateHealth: false, autoUpdateStability: false
+                             junit 'coverage/ecommerce-platform/junit/junit.xml'
+                             cobertura coberturaReportFile: 'coverage/ecommerce-platform/cobertura-coverage.xml', conditionalCoverageTargets: '20, 0, 0', lineCoverageTargets: '20, 0, 0', methodCoverageTargets: '20, 0, 0', fileCoverageTargets: '20, 0, 0', autoUpdateHealth: false, autoUpdateStability: false
                          }
                      }
                  }
@@ -62,9 +60,10 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Deploy') {
+        stage('Publish artifacts') {
             steps {
-                sh 'echo deploying....'
+              // version folder/zip
+              sh 'tar -czvf dist-${BUILD_NUMBER}.tar.gz dist/ecommerce-platform'
             }
         }
     }
