@@ -1,5 +1,6 @@
 FROM node:12-stretch
 
+RUN npm remove @angular/cli -g
 RUN npm install @angular/cli -g
 
 RUN which ng
