@@ -1,7 +1,8 @@
 pipeline {
     agent {
-        docker {
-            image 'node:12-stretch'
+        dockerfile {
+            filename: 'Dockerfile'
+            dir: 'ci/jenkins/docker'
             args '-u 0:0'
             reuseNode true
         }

@@ -29,8 +29,8 @@ module.exports = function (config) {
     reporters: ['progress', 'kjhtml', 'junit'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
+    logLevel: config.LOG_ERROR,
+    autoWatch: false,
     browsers: ['ChromeHeadlessCI'],
     customLaunchers: {
       ChromeHeadlessCI: {
@@ -39,6 +39,7 @@ module.exports = function (config) {
       }
     },
     singleRun: true,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    browserNoActivityTimeout: 40000
   });
 };
