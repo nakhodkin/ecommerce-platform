@@ -28,7 +28,6 @@ pipeline {
             steps {
                 // check cloud storage
                 // check missing
-                sh 'npm install jest'
                 sh 'npm install'
             }
         }
@@ -60,7 +59,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'npm run build-ci'
             }
         }
         stage('Publish artifacts') {
