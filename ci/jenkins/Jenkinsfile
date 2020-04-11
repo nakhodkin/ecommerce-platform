@@ -14,6 +14,17 @@ pipeline {
         NODE_ENV = "production"
     }
     stages {
+        stage('Build in Docker') {
+            steps {
+                script{
+                    docker.image('node:12-stretch').inside{
+                        sh 'pwd'
+                        sh 'npm install @angular/cli -g'
+                        sh 'ng --version'
+                    }
+                }
+            }
+        }
         stage('Check environment') {
             steps {
                 sh 'pwd'
