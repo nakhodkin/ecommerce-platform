@@ -14,8 +14,10 @@ pipeline {
     }
     stages {
         stage('Prepare environment') {
-          sh 'npm i @angular/cli'
-          sh 'ls'
+          steps {
+            sh 'npm i @angular/cli'
+            sh 'ls'
+          }
         }
         stage('Check environment') {
             steps {
