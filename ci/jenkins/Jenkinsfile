@@ -10,10 +10,8 @@ pipeline {
         stage('Build in Docker') {
             steps {
                 script{
-                    docker.image('node:12-stretch', '-u 0:0').inside{
-                        sh 'pwd'
-                        sh 'npm install @angular/cli -g'
-                        sh 'ng --version'
+                    docker.image('node:12-stretch').withRun('-u 0:0') {c ->
+                      sh 'ng --version'
                     }
                 }
             }
