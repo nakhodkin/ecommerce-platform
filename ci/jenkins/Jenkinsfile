@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'ci/jenkins/docker'
-            args '-u root:sudo -v ${PWD}:/usr/app -w /usr/app'
+            args '-u root:sudo'
             reuseNode true
         }
     }
