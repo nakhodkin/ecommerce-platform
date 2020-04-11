@@ -26,8 +26,8 @@ pipeline {
             steps {
                 // check cloud storage
                 // check missing
-                sh 'npm install'
-                sh 'ls node_modules/.bin'
+                sh 'npm ci'
+                sh 'ls node_modules'
             }
         }
         stage('Static checks') {
