@@ -13,13 +13,6 @@ pipeline {
         NODE_ENV = "production"
     }
     stages {
-        stage('Prepare environment') {
-          steps {
-            sh '''
-            /usr/local/bin/ng --version
-            '''
-          }
-        }
         stage('Check environment') {
             steps {
                 sh 'pwd'
