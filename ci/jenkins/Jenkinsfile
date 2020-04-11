@@ -28,6 +28,7 @@ pipeline {
             steps {
                 // check cloud storage
                 // check missing
+                sh 'npm install --save-dev @angular-devkit/build-angular'
                 sh 'npm ci'
                 sh 'ls node_modules'
             }
