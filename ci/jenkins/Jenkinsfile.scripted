@@ -1,0 +1,29 @@
+@Library('github.com/releaseworks/jenkinslib') _
+
+node {
+  stage("Checkout") {
+    checkout scm
+  }
+  stage("Check env") {
+    sh """
+        node --version
+        npm --version
+        ng --version
+        docker --version
+    """
+  }
+  stage("Build") {
+    def customImage = docker.build("my-image:${env.BUILD_ID}")
+
+    customImage.inside {
+        sh 'echo Hello'
+    }
+
+    customImage.withRun('-e "MYSQL_ROOT_PASSWORD=my-secret-pw" -v ${PWD}:/usr/app') { c ->
+        sh 'npm run test:ci'
+    }
+
+    sh 'ls'
+    sh 'echo -------------------------------'
+  }
+}
