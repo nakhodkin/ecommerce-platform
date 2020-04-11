@@ -1,12 +1,5 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-            dir 'ci/jenkins/docker'
-            args '-u 0:0 -v ${PWD}:/usr/app -w /usr/app'
-            reuseNode true
-        }
-    }
+    agent any
     parameters {
         string(name: 'api', defaultValue: 'http://', description: 'Api url')
     }
