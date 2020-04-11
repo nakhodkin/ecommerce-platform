@@ -21,7 +21,6 @@ pipeline {
         }
         stage('Check environment') {
             steps {
-                sh 'mkdir node_modules'
                 sh 'pwd'
                 sh 'node --version'
                 sh 'npm --version'
