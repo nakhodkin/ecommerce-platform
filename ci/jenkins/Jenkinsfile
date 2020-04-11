@@ -1,8 +1,7 @@
 pipeline {
     agent {
-        dockerfile {
-            filename 'Dockerfile'
-            dir 'ci/jenkins/docker'
+        docker {
+            image 'node:12-stretch'
             args '-u 0:0'
             reuseNode true
         }
@@ -14,13 +13,16 @@ pipeline {
         NODE_ENV = "production"
     }
     stages {
+        stage('Prepare environment') {
+          sh 'npm i @angular/cli'
+          sh 'ls'
+        }
         stage('Check environment') {
             steps {
                 sh 'mkdir node_modules'
                 sh 'pwd'
                 sh 'node --version'
                 sh 'npm --version'
-                sh 'ng --version'
                 sh "echo ${params.api} > 1.txt"
                 sh "cat 1.txt"
             }
@@ -29,7 +31,6 @@ pipeline {
             steps {
                 // check cloud storage
                 // check missing
-                sh 'npm i @angular-devkit/build-angular'
                 sh 'npm install'
             }
         }
