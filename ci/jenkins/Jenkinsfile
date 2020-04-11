@@ -1,12 +1,5 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-            dir 'ci/jenkins/docker'
-            args '-u 0:0'
-            reuseNode true
-        }
-    }
+    agent any
     parameters {
         string(name: 'api', defaultValue: 'http://', description: 'Api url')
     }
@@ -19,7 +12,7 @@ pipeline {
                 sh 'mkdir node_modules'
                 sh 'node --version'
                 sh 'npm --version'
-                sh '/usr/local/lib/node_modules/@angular/cli/bin/ng --version'
+                sh 'ng --version'
                 sh "echo ${params.api} > 1.txt"
                 sh "cat 1.txt"
             }
