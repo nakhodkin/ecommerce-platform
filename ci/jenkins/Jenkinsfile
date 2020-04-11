@@ -21,6 +21,7 @@ pipeline {
             steps {
                 // check cloud storage
                 // check missing
+                sh 'npm i @angular-devkit/build-angular'
                 sh 'npm install'
             }
         }
