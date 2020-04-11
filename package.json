@@ -9,7 +9,7 @@
     "test": "ng test",
     "test-ci": "node_modules/.bin/ng test --karma-config=karma.conf.ci.js --no-progress --code-coverage",
     "lint": "ng lint",
-    "lint-ci": "node_modules/.bin/ng lint --configuration=ci > tslint.report.json",
+    "lint-ci": "npx ng lint --configuration=ci > tslint.report.json",
     "e2e": "ng e2e",
     "coverage": "ng test --watch false"
   },
