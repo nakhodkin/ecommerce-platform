@@ -1,8 +1,9 @@
 FROM node:12-stretch
 
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 
-RUN npm remove @angular/cli -g
+USER root
+
 RUN npm install @angular/cli -g
 
 RUN which ng

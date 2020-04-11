@@ -3,7 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile'
             dir 'ci/jenkins/docker'
-            args '-u 0:0 -v ${PWD}:/usr/src/app -w /usr/src/app'
+            args '-u 0:0 -v ${PWD}:/usr/app -w /usr/app'
             reuseNode true
         }
     }
