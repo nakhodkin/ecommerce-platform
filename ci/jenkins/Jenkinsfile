@@ -15,7 +15,6 @@ pipeline {
     stages {
         stage('Prepare environment') {
           steps {
-            sh 'npm cache clean'
             sh 'npm install @angular/cli -g'
           }
         }
