@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+     agent {
+         docker {
+             image 'node:12-stretch'
+             args '-u 0:0'
+             reuseNode true
+         }
+     }
     parameters {
         string(name: 'api', defaultValue: 'http://', description: 'Api url')
     }
@@ -7,6 +13,10 @@ pipeline {
         NODE_ENV = "production"
     }
     stages {
+        stage('Prepare environment') {
+          sh 'npm cache clean'
+          sh 'npm install @angular/cli -g'
+        }
         stage('Check environment') {
             steps {
                 sh 'pwd'
