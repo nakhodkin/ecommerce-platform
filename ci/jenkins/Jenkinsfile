@@ -16,9 +16,7 @@ pipeline {
         stage('Prepare environment') {
           steps {
             sh '''
-            npm i @angular/cli
-            alias ng=node_modules/.bin/ng
-            ng --version
+            /usr/local/bin/ng --version
             '''
           }
         }
